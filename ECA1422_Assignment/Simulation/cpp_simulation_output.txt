@@ -1,0 +1,44 @@
+ECA1422 AI-RTOS Industrial Machine-Condition Monitoring
+Executable reference discrete-event preemptive fixed-priority simulation
+Horizon: 1000 ms; time unit: ms
+
+[Nominal]
+CPU utilization: 33.170%
+Busy time: 331.700 ms
+Deadline misses: 0
+Maximum response time: 18.420 ms
+PASS
+
+[AI_WCET_8ms]
+CPU utilization: 36.670%
+Busy time: 366.700 ms
+Deadline misses: 0
+Maximum response time: 24.800 ms
+PASS
+
+[Communication_WCET_40ms]
+CPU utilization: 39.570%
+Busy time: 395.700 ms
+Deadline misses: 0
+Maximum response time: 63.920 ms
+PASS
+
+[Combined_AI8_Comm40]
+CPU utilization: 43.070%
+Busy time: 430.700 ms
+Deadline misses: 0
+Maximum response time: 68.320 ms
+PASS
+
+[Interrupt_at_437.3ms]
+CPU utilization: 33.175%
+Busy time: 331.750 ms
+Deadline misses: 0
+Maximum response time: 18.420 ms
+PASS
+
+[Interrupt path]
+ISR budget: <= 0.050 ms (50 us)
+FaultTask priority: 6
+Event: GPIO threshold -> ISR -> semaphore -> FaultTask -> safe state
+PASS by timing budget

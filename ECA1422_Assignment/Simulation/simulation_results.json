@@ -1,0 +1,129 @@
+{
+  "scenarios": {
+    "Nominal": {
+      "duration_ms": 1000.0,
+      "busy_ms": 331.7,
+      "cpu_utilization_pct": 33.17,
+      "deadline_misses": 0,
+      "max_response_ms": 18.42,
+      "task_max_response_ms": {
+        "SensorTask": 0.18,
+        "FeatureTask": 2.34,
+        "AITask": 7.74,
+        "CommTask": 17.54,
+        "HealthTask": 18.42
+      }
+    },
+    "AI_WCET_8ms": {
+      "duration_ms": 1000.0,
+      "busy_ms": 366.7,
+      "cpu_utilization_pct": 36.67,
+      "deadline_misses": 0,
+      "max_response_ms": 24.8,
+      "task_max_response_ms": {
+        "SensorTask": 0.18,
+        "FeatureTask": 2.34,
+        "AITask": 11.96,
+        "CommTask": 23.92,
+        "HealthTask": 24.8
+      }
+    },
+    "Communication_WCET_40ms": {
+      "duration_ms": 1000.0,
+      "busy_ms": 395.7,
+      "cpu_utilization_pct": 39.57,
+      "deadline_misses": 0,
+      "max_response_ms": 63.92,
+      "task_max_response_ms": {
+        "SensorTask": 0.18,
+        "FeatureTask": 2.34,
+        "AITask": 7.74,
+        "CommTask": 63.22,
+        "HealthTask": 63.92
+      }
+    },
+    "Combined_AI8_Comm40": {
+      "duration_ms": 1000.0,
+      "busy_ms": 430.7,
+      "cpu_utilization_pct": 43.07,
+      "deadline_misses": 0,
+      "max_response_ms": 68.32,
+      "task_max_response_ms": {
+        "SensorTask": 0.18,
+        "FeatureTask": 2.34,
+        "AITask": 11.96,
+        "CommTask": 67.44,
+        "HealthTask": 68.32
+      }
+    },
+    "Interrupt_at_437.3ms": {
+      "duration_ms": 1000.0,
+      "busy_ms": 331.75,
+      "cpu_utilization_pct": 33.175,
+      "deadline_misses": 0,
+      "max_response_ms": 18.42,
+      "task_max_response_ms": {
+        "SensorTask": 0.18,
+        "FeatureTask": 2.34,
+        "AITask": 7.74,
+        "CommTask": 17.54,
+        "HealthTask": 18.42,
+        "FaultTask": 0.05
+      }
+    },
+    "Sensor_failure_after_300ms": {
+      "duration_ms": 1000.0,
+      "busy_ms": 205.7,
+      "cpu_utilization_pct": 20.57,
+      "deadline_misses": 0,
+      "max_response_ms": 18.42,
+      "task_max_response_ms": {
+        "SensorTask": 0.18,
+        "FeatureTask": 2.34,
+        "AITask": 7.74,
+        "CommTask": 17.54,
+        "HealthTask": 18.42
+      }
+    }
+  },
+  "ai": {
+    "total_samples": 1200,
+    "train": 960,
+    "test": 240,
+    "accuracy_pct": 99.1666666667,
+    "confusion_matrix": [
+      [
+        80,
+        0,
+        0
+      ],
+      [
+        0,
+        79,
+        1
+      ],
+      [
+        0,
+        1,
+        79
+      ]
+    ],
+    "precision_recall_f1": {
+      "Normal": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0
+      },
+      "Misalignment": {
+        "precision": 0.9875,
+        "recall": 0.9875,
+        "f1-score": 0.9875
+      },
+      "Bearing Fault": {
+        "precision": 0.9875,
+        "recall": 0.9875,
+        "f1-score": 0.9875
+      }
+    }
+  }
+}

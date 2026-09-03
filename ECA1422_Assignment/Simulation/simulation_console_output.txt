@@ -1,0 +1,90 @@
+ECA1422 AI-RTOS Industrial Machine-Condition Monitoring
+Reference discrete-event preemptive fixed-priority simulation
+Time unit: milliseconds | Horizon: 1000 ms
+
+[Nominal]
+CPU utilization: 33.170%
+Busy time: 331.700 ms
+Deadline misses: 0
+Maximum response time: 18.420 ms
+  SensorTask: max R = 0.180 ms
+  FeatureTask: max R = 2.340 ms
+  AITask: max R = 7.740 ms
+  CommTask: max R = 17.540 ms
+  HealthTask: max R = 18.420 ms
+PASS
+
+[AI_WCET_8ms]
+CPU utilization: 36.670%
+Busy time: 366.700 ms
+Deadline misses: 0
+Maximum response time: 24.800 ms
+  SensorTask: max R = 0.180 ms
+  FeatureTask: max R = 2.340 ms
+  AITask: max R = 11.960 ms
+  CommTask: max R = 23.920 ms
+  HealthTask: max R = 24.800 ms
+PASS
+
+[Communication_WCET_40ms]
+CPU utilization: 39.570%
+Busy time: 395.700 ms
+Deadline misses: 0
+Maximum response time: 63.920 ms
+  SensorTask: max R = 0.180 ms
+  FeatureTask: max R = 2.340 ms
+  AITask: max R = 7.740 ms
+  CommTask: max R = 63.220 ms
+  HealthTask: max R = 63.920 ms
+PASS
+
+[Combined_AI8_Comm40]
+CPU utilization: 43.070%
+Busy time: 430.700 ms
+Deadline misses: 0
+Maximum response time: 68.320 ms
+  SensorTask: max R = 0.180 ms
+  FeatureTask: max R = 2.340 ms
+  AITask: max R = 11.960 ms
+  CommTask: max R = 67.440 ms
+  HealthTask: max R = 68.320 ms
+PASS
+
+[Interrupt_at_437.3ms]
+CPU utilization: 33.175%
+Busy time: 331.750 ms
+Deadline misses: 0
+Maximum response time: 18.420 ms
+  SensorTask: max R = 0.180 ms
+  FeatureTask: max R = 2.340 ms
+  AITask: max R = 7.740 ms
+  CommTask: max R = 17.540 ms
+  HealthTask: max R = 18.420 ms
+  FaultTask: max R = 0.050 ms
+PASS
+
+[Sensor_failure_after_300ms]
+CPU utilization: 20.570%
+Busy time: 205.700 ms
+Deadline misses: 0
+Maximum response time: 18.420 ms
+  SensorTask: max R = 0.180 ms
+  FeatureTask: max R = 2.340 ms
+  AITask: max R = 7.740 ms
+  CommTask: max R = 17.540 ms
+  HealthTask: max R = 18.420 ms
+PASS
+
+[Interrupt event]
+Event time: 437.300 ms
+ISR design budget: <= 0.050 ms (50 us)
+FaultTask priority: 6 (above periodic tasks)
+ISR-to-task path: GPIO event -> ISR -> binary semaphore -> FaultTask -> safe-state decision
+PASS by timing model/design budget
+
+[AI validation]
+Samples: 1200 | Train: 960 | Test: 240
+Held-out accuracy: 99.17%
+Confusion matrix (rows=actual, cols=predicted):
+[[80, 0, 0], [0, 79, 1], [0, 1, 79]]
+PASS* (synthetic validation only; not field accuracy)

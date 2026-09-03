@@ -1,0 +1,20 @@
+ECA1422 SystemC execution instructions
+
+1. Install SystemC (2.3.x or 3.x) in the laboratory environment.
+2. Compile the supplied ECA1422_systemc_scheduler.cpp against the SystemC library.
+3. Run the executable.
+4. Capture the actual terminal output and insert it in the report as SystemC execution evidence.
+
+The model uses:
+SensorTask  priority 5  C=0.18 ms  T=D=1 ms
+FeatureTask priority 4  C=1.80 ms  T=D=20 ms
+AITask      priority 3  C=4.50 ms  T=D=100 ms
+CommTask    priority 2  C=8.00 ms  T=D=500 ms
+HealthTask  priority 1  C=0.70 ms  T=D=1000 ms
+
+Expected nominal analytical result (not a substitute for actual SystemC console evidence):
+CPU utilization = 33.17%
+Deadline misses = 0
+Maximum analytical response time = 18.42 ms
+
+A standalone C++ reference implementation has already been compiled and executed in the current environment. Its output is included separately and is clearly labelled as reference-simulation evidence.
