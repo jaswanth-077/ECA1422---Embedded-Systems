@@ -1,0 +1,14 @@
+Test ID,Requirement,Acceptance criterion,Evidence,Result
+T01,DHT11 acquisition,Valid temperature/humidity readings obtained during operation,Prototype + Serial Monitor evidence,PASS – functional evidence; formal accuracy not validated
+T02,OLED display,"Temperature, humidity, PM2.5 and status displayed",Prototype/OLED evidence,PASS – functional
+T03,PM2.5 simulation,Target nominal band 12.0–35.0 µg/m³,510-record raw export,DEVIATION – observed 11.7–35.1 µg/m³; ±0.3 step crosses bounds by one step
+T04,Latest Firebase upload,Successful write to `/sensor`,Serial Monitor HTTP 200 + Firebase export,PASS
+T05,Historical Firebase logging,Each successful upload creates a record under `/readings`,Raw export contains 510 records,PASS – export evidence
+T06,Timestamp generation,Timestamped records present in history,Raw export,PASS with limitation – 424 valid timestamps; 84 missing and 2 unsynced
+T07,Mobile data retrieval,Historical data retrieved and visualized,Flutter source + app screenshots,PASS – functional evidence
+T08,Statistical analysis,Min/mean/max/SD calculated,Processed CSV + charts,PASS – 510 records
+T09,Correlation analysis,Pearson r generated for PM2.5 vs environment,Processed CSV + charts,"PASS – r=-0.134 (temperature), r=-0.092 (humidity)"
+T10,Wi-Fi reconnection,Automatic recovery after disconnect,No formal controlled test supplied,PENDING
+T11,Long-duration uptime,Continuous stable operation over defined duration,No formal duration log supplied,PENDING
+T12,Sensor accuracy,Comparison against calibrated reference,No reference-instrument dataset supplied,PENDING
+T13,Security hardening,Production-safe credentials/rules/certificate validation,Source inspection,PENDING – development configuration uses placeholder credentials and `setInsecure()`

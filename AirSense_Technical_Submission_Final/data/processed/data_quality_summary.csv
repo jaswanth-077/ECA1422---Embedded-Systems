@@ -1,0 +1,7 @@
+quality_item,value,note
+Total historical records,510.0,Exact count in exported /readings node
+Records with valid explicit timestamp,424.0,Timestamp parses as YYYY-MM-DD HH:MM:SS
+Records with missing timestamp field,84.0,Raw export has no timestamp field
+Records marked TIME_NOT_SYNCED,2.0,Firmware fallback when NTP time is unavailable
+PM2.5 observed minimum,11.7,Raw exported value
+PM2.5 observed maximum,35.1,Raw exported value

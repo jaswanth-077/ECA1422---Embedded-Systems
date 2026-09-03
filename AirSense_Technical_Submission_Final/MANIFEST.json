@@ -1,0 +1,19 @@
+{
+  "project": "Advanced IoT-Based Particulate Matter and Air Quality Monitoring System Using ESP32 with Real-Time Analytics",
+  "historical_records": 510,
+  "valid_timestamps": 424,
+  "pm25_min": 11.7,
+  "pm25_mean": 24.59470588235294,
+  "pm25_max": 35.1,
+  "pm25_population_sd": 6.385344080873158,
+  "pm25_vs_temperature_r": -0.1338323708755396,
+  "pm25_vs_humidity_r": -0.09161932761508454,
+  "status_counts": {
+    "GOOD": 2,
+    "MODERATE": 508,
+    "UNHEALTHY": 0,
+    "POOR": 0
+  },
+  "demo_video": "PENDING",
+  "github": "https://github.com/jaswanth-077/ECA1422---Embedded-Systems"
+}

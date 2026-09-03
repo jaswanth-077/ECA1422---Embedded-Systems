@@ -1,0 +1,10 @@
+Requirement ID,Requirement,Implementation detail,Traceable source,Verification
+FR-01,Acquire temperature/humidity from DHT11,GPIO 4,EXP8_submission.ino,T01
+FR-02,Display live readings locally,SSD1306 128×64 over I²C,EXP8_submission.ino,T02
+FR-03,Generate PM2.5 test value,Firmware simulation,EXP8_submission.ino,T03
+FR-04,Upload latest reading,/sensor.json via HTTPS PUT,EXP8_submission.ino,T04
+FR-05,Store historical readings,/readings.json via HTTPS POST,EXP8_submission.ino,T05
+FR-06,Provide timestamps,"NTP, IST UTC+5:30",EXP8_submission.ino,T06
+FR-07,Retrieve live/historical data in mobile app,Firebase Realtime Database,mobile_app/lib,T07
+FR-08,Calculate statistics,Min/mean/max/population SD,mobile_app/lib/screens/history_screen.dart,T08
+FR-09,Calculate correlations,Pearson correlation,mobile_app/lib/screens/history_screen.dart + scatter_plot.dart,T09

@@ -1,0 +1,3 @@
+variable_x,variable_y,pearson_r
+PM2.5,Temperature,-0.1338323708755396
+PM2.5,Humidity,-0.09161932761508454
