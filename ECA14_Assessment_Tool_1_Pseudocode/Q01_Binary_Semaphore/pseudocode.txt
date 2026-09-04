@@ -1,0 +1,51 @@
+QUESTION 1 – Binary Semaphore
+
+Problem:
+Two tasks safely increment a shared counter using a binary semaphore.
+
+PSEUDOCODE
+
+BEGIN
+
+DECLARE shared_counter = 0
+
+CREATE binary_semaphore mutex
+INITIALIZE mutex = AVAILABLE
+
+TASK Task1
+    REPEAT
+        WAIT(mutex)
+
+        shared_counter = shared_counter + 1
+        PRINT "Task1 Counter =", shared_counter
+
+        SIGNAL(mutex)
+
+        DELAY(100 ms)
+    FOREVER
+END TASK
+
+
+TASK Task2
+    REPEAT
+        WAIT(mutex)
+
+        shared_counter = shared_counter + 1
+        PRINT "Task2 Counter =", shared_counter
+
+        SIGNAL(mutex)
+
+        DELAY(100 ms)
+    FOREVER
+END TASK
+
+
+CREATE Task1
+CREATE Task2
+
+START RTOS SCHEDULER
+
+END
+
+Purpose:
+The binary semaphore ensures that only one task accesses and modifies the shared counter at a time.

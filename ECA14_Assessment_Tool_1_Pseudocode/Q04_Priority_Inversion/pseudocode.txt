@@ -1,0 +1,88 @@
+QUESTION 4 – Priority Inversion and Priority Inheritance
+
+Problem:
+Demonstrate priority inversion using three tasks and a mutex, then resolve it using priority inheritance.
+
+PSEUDOCODE
+
+BEGIN
+
+CREATE mutex SHARED_MUTEX
+
+CREATE LowTask WITH PRIORITY = LOW
+CREATE MediumTask WITH PRIORITY = MEDIUM
+CREATE HighTask WITH PRIORITY = HIGH
+
+
+TASK LowTask
+    WAIT(SHARED_MUTEX)
+
+    PRINT "LowTask owns the mutex"
+
+    PERFORM_CRITICAL_WORK()
+
+    SIGNAL(SHARED_MUTEX)
+
+    PRINT "LowTask released the mutex"
+END TASK
+
+
+TASK MediumTask
+    REPEAT
+        PERFORM_CPU_INTENSIVE_WORK()
+    FOREVER
+END TASK
+
+
+TASK HighTask
+    WAIT(SHARED_MUTEX)
+
+    PRINT "HighTask waiting for mutex"
+
+    PERFORM_CRITICAL_WORK()
+
+    SIGNAL(SHARED_MUTEX)
+
+    PRINT "HighTask completed"
+END TASK
+
+
+// Priority inversion demonstration
+
+START LowTask
+LowTask LOCKS SHARED_MUTEX
+
+START HighTask
+HighTask attempts to LOCK SHARED_MUTEX
+HighTask becomes BLOCKED
+
+START MediumTask
+MediumTask PREEMPTS LowTask
+
+// Priority inversion occurs because LowTask cannot release
+// the mutex while MediumTask is executing.
+
+
+// Enable priority inheritance
+
+ENABLE PRIORITY_INHERITANCE(SHARED_MUTEX)
+
+WHEN HighTask blocks on SHARED_MUTEX:
+    TEMPORARILY RAISE LowTask PRIORITY to HighTask PRIORITY
+
+LowTask RESUMES
+LowTask FINISHES CRITICAL WORK
+LowTask SIGNALS(SHARED_MUTEX)
+
+RESTORE LowTask ORIGINAL PRIORITY
+
+HighTask ACQUIRES SHARED_MUTEX
+HighTask PERFORMS CRITICAL_WORK
+HighTask SIGNALS(SHARED_MUTEX)
+
+START RTOS SCHEDULER
+
+END
+
+Purpose:
+Priority inheritance temporarily raises the priority of the low-priority task holding a mutex needed by a high-priority task, reducing priority inversion and preventing unnecessary blocking.

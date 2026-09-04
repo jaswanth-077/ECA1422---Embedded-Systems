@@ -1,0 +1,62 @@
+QUESTION 5 – Reader and Writer Synchronization
+
+Problem:
+Safely share a common buffer between writer and reader tasks using semaphores.
+
+PSEUDOCODE
+
+BEGIN
+
+DECLARE shared_buffer
+
+CREATE binary_semaphore BUFFER_EMPTY
+CREATE binary_semaphore BUFFER_FULL
+
+INITIALIZE BUFFER_EMPTY = AVAILABLE
+INITIALIZE BUFFER_FULL = NOT_AVAILABLE
+
+
+TASK Writer
+    REPEAT
+
+        WAIT(BUFFER_EMPTY)
+
+        data = GENERATE_DATA()
+        shared_buffer = data
+
+        PRINT "Writer wrote:", data
+
+        SIGNAL(BUFFER_FULL)
+
+        DELAY(100 ms)
+
+    FOREVER
+END TASK
+
+
+TASK Reader
+    REPEAT
+
+        WAIT(BUFFER_FULL)
+
+        data = shared_buffer
+
+        PRINT "Reader read:", data
+
+        SIGNAL(BUFFER_EMPTY)
+
+        DELAY(100 ms)
+
+    FOREVER
+END TASK
+
+
+CREATE Writer
+CREATE Reader
+
+START RTOS SCHEDULER
+
+END
+
+Purpose:
+BUFFER_EMPTY ensures the writer does not overwrite unread data, while BUFFER_FULL ensures the reader only reads valid written data.

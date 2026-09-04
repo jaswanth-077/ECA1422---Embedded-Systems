@@ -1,0 +1,83 @@
+QUESTION 3 – Mutex with Timeout
+
+Problem:
+Multiple tasks access a shared register using a mutex with a timeout.
+
+PSEUDOCODE
+
+BEGIN
+
+DECLARE shared_register = 0
+
+CREATE mutex REGISTER_MUTEX
+
+TASK Task1
+    REPEAT
+        IF LOCK(REGISTER_MUTEX, TIMEOUT = 100 ms) == SUCCESS THEN
+
+            shared_register = shared_register + 1
+            PRINT "Task1 Register =", shared_register
+
+            UNLOCK(REGISTER_MUTEX)
+
+        ELSE
+
+            PRINT "Task1: Mutex timeout"
+
+        END IF
+
+        DELAY(50 ms)
+    FOREVER
+END TASK
+
+
+TASK Task2
+    REPEAT
+        IF LOCK(REGISTER_MUTEX, TIMEOUT = 100 ms) == SUCCESS THEN
+
+            shared_register = shared_register + 2
+            PRINT "Task2 Register =", shared_register
+
+            UNLOCK(REGISTER_MUTEX)
+
+        ELSE
+
+            PRINT "Task2: Mutex timeout"
+
+        END IF
+
+        DELAY(50 ms)
+    FOREVER
+END TASK
+
+
+TASK Task3
+    REPEAT
+        IF LOCK(REGISTER_MUTEX, TIMEOUT = 100 ms) == SUCCESS THEN
+
+            shared_register = shared_register + 3
+            PRINT "Task3 Register =", shared_register
+
+            UNLOCK(REGISTER_MUTEX)
+
+        ELSE
+
+            PRINT "Task3: Mutex timeout"
+
+        END IF
+
+        DELAY(50 ms)
+    FOREVER
+END TASK
+
+
+CREATE Task1
+CREATE Task2
+CREATE Task3
+
+START RTOS SCHEDULER
+
+END
+
+Purpose:
+The mutex protects the shared register. The timeout prevents a task from waiting indefinitely when the mutex is unavailable.

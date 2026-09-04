@@ -1,0 +1,71 @@
+QUESTION 2 – Producer-Consumer with Counting Semaphores
+
+Problem:
+Implement a producer-consumer system using counting semaphores and a bounded buffer.
+
+PSEUDOCODE
+
+BEGIN
+
+DECLARE BUFFER_SIZE = 5
+DECLARE buffer[BUFFER_SIZE]
+
+DECLARE in = 0
+DECLARE out = 0
+
+CREATE counting_semaphore EMPTY
+CREATE counting_semaphore FULL
+CREATE mutex BUFFER_MUTEX
+
+INITIALIZE EMPTY = BUFFER_SIZE
+INITIALIZE FULL = 0
+INITIALIZE BUFFER_MUTEX = AVAILABLE
+
+
+TASK Producer
+    REPEAT
+        item = PRODUCE_ITEM()
+
+        WAIT(EMPTY)
+        WAIT(BUFFER_MUTEX)
+
+        buffer[in] = item
+        in = (in + 1) MOD BUFFER_SIZE
+
+        PRINT "Produced:", item
+
+        SIGNAL(BUFFER_MUTEX)
+        SIGNAL(FULL)
+
+        DELAY(100 ms)
+    FOREVER
+END TASK
+
+
+TASK Consumer
+    REPEAT
+        WAIT(FULL)
+        WAIT(BUFFER_MUTEX)
+
+        item = buffer[out]
+        out = (out + 1) MOD BUFFER_SIZE
+
+        PRINT "Consumed:", item
+
+        SIGNAL(BUFFER_MUTEX)
+        SIGNAL(EMPTY)
+
+        DELAY(150 ms)
+    FOREVER
+END TASK
+
+
+CREATE Producer
+CREATE Consumer
+
+START RTOS SCHEDULER
+
+END
+
+Purpose:
+EMPTY counts available buffer positions, FULL counts stored items, and BUFFER_MUTEX protects the shared buffer.
