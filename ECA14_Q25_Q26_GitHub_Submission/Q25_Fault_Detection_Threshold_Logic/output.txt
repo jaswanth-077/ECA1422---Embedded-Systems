@@ -1,0 +1,14 @@
+Industrial Fault Detection System
+High threshold: 80 C
+Low threshold : 10 C
+
+Sample 1 | Temperature: 45 C | Status: NORMAL
+Sample 2 | Temperature: 62 C | Status: NORMAL
+Sample 3 | Temperature: 79 C | Status: NORMAL
+Sample 4 | Temperature: 81 C | Status: HIGH TEMPERATURE FAULT
+Sample 5 | Temperature: 75 C | Status: NORMAL
+Sample 6 | Temperature: 9 C | Status: LOW TEMPERATURE FAULT
+Sample 7 | Temperature: 32 C | Status: NORMAL
+Sample 8 | Temperature: 88 C | Status: HIGH TEMPERATURE FAULT
+Sample 9 | Temperature: 70 C | Status: NORMAL
+Sample 10 | Temperature: 10 C | Status: NORMAL
